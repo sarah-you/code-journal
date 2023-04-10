@@ -1,0 +1,47 @@
+body {
+  font-family: "Fira Sans", sans-serif;
+}
+
+div.container {
+  background-color: #552b80;
+}
+
+.header-row {
+  color: white;
+  padding: 10px;
+}
+
+.col-full img {
+  width: 100%;
+}
+
+.col-full {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+input,
+textarea {
+  width: 100%;
+}
+
+input {
+  height: 2rem;
+}
+
+button {
+  background-color: #552b80;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 78%;
+  width: 60px;
+  height: 28px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.form {
+  margin-top: 7%;
+}
