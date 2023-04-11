@@ -11,6 +11,9 @@
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -18,10 +21,49 @@
 <body>
   <header>
     <div class="container">
+      <div class="row header-row">
+        <div class="column-full"><h2>Code Journal</h2></div>
+      </div>
     </div>
   </header>
   <main class="container">
-    <div data-view="entry-form"></div>
+    <div data-view="entry-form">
+      <form>
+        <div class="row">
+          <h1>New Entry</h1>
+        </div>
+        <div class="row">
+          <div class="column-half">
+            <img src="images/placeholder-image-square.jpg" alt="placeholder image icon in gray color with a small rectangle frame in the middle and has an incon of sun and mountain inside">
+          </div>
+          <div class="column-half margin-top">
+            <div class="form">
+              <label for="title">Title</label>
+            </div>
+            <div class="form">
+              <input type="text" id="title" required name="title">
+            </div>
+            <div class="form">
+              <label for="photo-url">Photo URL</label>
+            </div>
+            <div class="form">
+              <input type="url" id="photo-url" required name="photo">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-full">
+            <div class="notes">
+              <label for="notes">Notes</label>
+            </div>
+            <textarea id="notes"></textarea>
+          </div>
+        </div>
+        <div class="row flex-end">
+          <button type="submit">SAVE</button>
+        </div>
+      </form>
+    </div>
     <div data-view="entries" class="hidden"></div>
   </main>
   <script src="js/data.js"></script>
