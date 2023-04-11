@@ -13,7 +13,7 @@
     referrerpolicy="no-referrer" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -22,32 +22,44 @@
   <header>
     <div class="container">
       <div class="header-row">
-        <div class="col-full">Code Journal</div>
+        <div class="column-full"><h2>Code Journal</h2></div>
       </div>
     </div>
   </header>
   <main class="container">
-    <div class="row">
-      <div class="col-full">
-        <div data-view="entry-form">
-          <h1>New Entry</h1>
+    <div data-view="entry-form">
+      <div class="row">
+        <h1>New Entry</h1>
+      </div>
+      <div class="row">
+        <div class="column-half">
           <img src="images/placeholder-image-square.jpg" alt="placeholder image icon in gray color with a small rectangle frame in the middle and has an incon of sun and mountain inside">
+        </div>
+        <div class="column-half">
           <div class="form">
             <label for="title">Title</label>
-            <input type="text" id="title" name="title">
+          </div>
+          <div class="form">
+            <input type="text" id="title" required name="title">
           </div>
           <div class="form">
             <label for="photo-url">Photo URL</label>
-            <input type="text" id="photo-url" name="photo-url">
           </div>
           <div class="form">
-            <label for="notes">Notes</label>
-            <textarea id="notes"></textarea>
+            <input type="text" id="photo-url" required name="photo-url">
           </div>
         </div>
-        <div class="save">
-          <button value="save">SAVE</button>
+      </div>
+      <div class="row">
+        <div class="column-full">
+          <div class="notes">
+            <label for="notes">Notes</label>
+          </div>
+          <textarea id="notes"></textarea>
         </div>
+      </div>
+      <div class="row flex-end">
+        <button value="save">SAVE</button>
       </div>
     </div>
     <div data-view="entries" class="hidden"></div>

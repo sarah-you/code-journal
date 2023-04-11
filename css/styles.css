@@ -1,47 +1,64 @@
 body {
-  font-family: "Fira Sans", sans-serif;
+  background-color: #f0f0f0;
+  font-family: "Josefin Sans", sans-serif;
 }
 
-div.container {
+header {
   background-color: #552b80;
-}
-
-.header-row {
   color: white;
-  padding: 10px;
+  padding: 1%;
 }
 
-.col-full img {
+h2 {
+  margin: 0;
+}
+
+.column-full {
+  margin-top: 1%;
+}
+
+img {
   width: 100%;
 }
 
-.col-full {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-
-input,
-textarea {
-  width: 100%;
+.form {
+  margin: 1%;
+  margin-left: 5%;
 }
 
 input {
-  height: 2rem;
+  width: 100%;
+  height: 35px;
+  border: solid;
+  border-radius: 5px;
+  border-color: #ccc;
+}
+
+#title {
+  margin-bottom: 3%;
+}
+
+.notes {
+  padding: 1% 0%;
+}
+
+textarea {
+  width: 100%;
+  height: 7rem;
+  border: solid;
+  border-radius: 5px;
+  border-color: #ccc;
 }
 
 button {
   background-color: #552b80;
-  color: white;
   border: none;
+  color: white;
   border-radius: 5px;
-  margin-left: 78%;
-  width: 60px;
-  height: 28px;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin-top: 2%;
+  padding: 8px 15px;
 }
 
-.form {
-  margin-top: 7%;
+.flex-end {
+  justify-content: flex-end;
 }
