@@ -8,11 +8,19 @@ function previewPhoto(event) {
   $imgSrc.setAttribute('src', $inputUrl);
 }
 
-const $submit = document.querySelector('button');
-
-$submit.addEventListener('click', saveEntry);
+const $form = document.querySelector('form');
 
 function saveEntry(event) {
   event.preventDefault();
-
+  const userInput = {};
+  userInput.title = event.target.elements.title.value;
+  userInput.imgUrl = event.target.elements.photo.value;
+  userInput.notes = event.target.elements.notes.value;
+  userInput.entryId = data.nextEntryId;
+  data.nextEntryId++;
+  data.entries.unshift(userInput);
+  $imgSrc.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $form.reset();
 }
+
+$form.addEventListener('submit', saveEntry);
