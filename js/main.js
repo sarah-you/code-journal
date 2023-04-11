@@ -7,3 +7,12 @@ function previewPhoto(event) {
   const $inputUrl = event.target.value;
   $imgSrc.setAttribute('src', $inputUrl);
 }
+
+const $submit = document.querySelector('button');
+
+$submit.addEventListener('click', saveEntry);
+
+function saveEntry(event) {
+  event.preventDefault();
+
+}
