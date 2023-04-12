@@ -1,5 +1,5 @@
 /* exported data */
-
+// local storage for entry submissions
 var data = {
   view: 'entry-form',
   entries: [],
