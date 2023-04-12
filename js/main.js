@@ -23,42 +23,32 @@ function saveEntry(event) {
   data.entries.unshift(userInput);
   $imgSrc.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
+  // renderEntry(userInput);
 }
 
 $form.addEventListener('submit', saveEntry);
 
-// Entries page elements;
-const $entries = document.getElementById('entries');
-
 function renderEntry(entry) {
+  // li element and its text content
+  const $title = document.createElement('li');
+  $title.textContent = entry.title;
+  $title.setAttribute('class', 'column-half');
 
-  // div.row created
-  const $row = document.createElement('div');
-  $row.setAttribute('class', 'entry row');
-  $entries.appendChild($row);
-
-  // div for img created and img attribute
-  const $imgColumn = document.createElement('div');
-  $imgColumn.setAttribute('class', 'column-half');
-  $row.appendChild($imgColumn);
   const $img = document.createElement('img');
-  $imgColumn.appendChild($img);
-  $img.setAttribute('src', data.entries.imgUrl);
+  $title.appendChild($img);
+  $img.setAttribute('src', entry.imgUrl);
 
-  // ul element created and its text content
-  const $ul = document.createElement('ul');
-  $row.appendChild($ul);
-  $ul.setAttribute('class', 'column-half');
-  $ul.textContent = data.entries.title;
+  const $notes = document.createElement('p');
+  $notes.textContent = entry.notes;
+  $title.appendChild($notes);
 
-  // li element created and its text content
-  const $list = document.createElement('li');
-  $ul.appendChild($list);
-  $list.textContent = data.entries.notes;
+  return $title;
 }
 
-for (let i = 0; i < data.entries.length; i++) {
-  $entries.appendChild(data.entries[i]);
-}
+const $ul = document.querySelector('ul');
 
-document.addEventListener('DOMContentLoaded', renderEntry(data.entries));
+document.addEventListener('DOMContentLoaded', function () {
+  for (let i = 0; i < data.entries.length; i++) {
+    $ul.appendChild(renderEntry(data.entries[i]));
+  }
+});
