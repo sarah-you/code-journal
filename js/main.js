@@ -27,66 +27,38 @@ function saveEntry(event) {
 
 $form.addEventListener('submit', saveEntry);
 
-// adding in dummy entries
-// const entry = [
-//   {
-//     img: 'images/placeholder-image-square.jpg',
-//     title: 'Cats',
-//     notes: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, aut harum nisi atque et quibusdam debitis nobis fugiat voluptatum illo repellendus iure non quos. Ad corrupti modi libero facere culpa!'
-//   },
-//   {
-//     img: 'images/placeholder-image-square.jpg',
-//     title: 'Cats 2',
-//     notes: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Delectus, aut harum nisi atque et quibusdam debitis nobis fugiat voluptatum illo repellendus iure non quos.Ad corrupti modi libero facere culpa!'
-//   }
-// ];
-
+// Entries page elements;
 const $entries = document.getElementById('entries');
 
-// div.row created
-const $row = document.createElement('div');
-$row.setAttribute('class', 'entry row');
-$entries.appendChild($row);
+function renderEntry(entry) {
 
-// div for img created and img attribute
-const $imgColumn = document.createElement('div');
-$imgColumn.setAttribute('class', 'column-half');
-$row.appendChild($imgColumn);
-const $img = document.createElement('img');
-$imgColumn.appendChild($img);
-$img.setAttribute('src', 'https://www.scotsman.com/webimg/b25lY21zOjY4N2ZhYmI3LTgyODgtNDQxNy1hMzIxLWZmMDI1Mzg4NGY2OTpkMGM4MTM0Yi05Mjk0LTRiMDQtYTBhNS1hODQwMTUxOWZlODY=.jpg?width=1200&enable=upscale');
+  // div.row created
+  const $row = document.createElement('div');
+  $row.setAttribute('class', 'entry row');
+  $entries.appendChild($row);
 
-// ul element created and its text content
-const $ul = document.createElement('ul');
-$row.appendChild($ul);
-$ul.setAttribute('class', 'column-half');
-$ul.textContent = 'Cats';
+  // div for img created and img attribute
+  const $imgColumn = document.createElement('div');
+  $imgColumn.setAttribute('class', 'column-half');
+  $row.appendChild($imgColumn);
+  const $img = document.createElement('img');
+  $imgColumn.appendChild($img);
+  $img.setAttribute('src', data.entries.imgUrl);
 
-// li element created and its text content
-const $list = document.createElement('li');
-$ul.appendChild($list);
-$list.textContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, aut harum nisi atque et quibusdam debitis nobis fugiat voluptatum illo repellendus iure non quos. Ad corrupti modi libero facere culpa!';
+  // ul element created and its text content
+  const $ul = document.createElement('ul');
+  $row.appendChild($ul);
+  $ul.setAttribute('class', 'column-half');
+  $ul.textContent = data.entries.title;
 
-// div.row for next entry created
-const $rowTwo = document.createElement('div');
-$rowTwo.setAttribute('class', 'entry row');
-$entries.appendChild($rowTwo);
+  // li element created and its text content
+  const $list = document.createElement('li');
+  $ul.appendChild($list);
+  $list.textContent = data.entries.notes;
+}
 
-// div for img entry 2 and its attribute
-const $imgColumnTwo = document.createElement('div');
-$imgColumnTwo.setAttribute('class', 'column-half');
-$rowTwo.appendChild($imgColumnTwo);
-const $imgTwo = document.createElement('img');
-$imgColumnTwo.appendChild($imgTwo);
-$imgTwo.setAttribute('src', 'https://api.time.com/wp-content/uploads/2014/11/140372563.jpg');
+for (let i = 0; i < data.entries.length; i++) {
+  $entries.appendChild(data.entries[i]);
+}
 
-// ul element for second entry and its content;
-const $ulTwo = document.createElement('ul');
-$rowTwo.appendChild($ulTwo);
-$ulTwo.setAttribute('class', 'column-half');
-$ulTwo.textContent = 'Cats Two';
-
-// li element for second entry and its content;
-const $listTwo = document.createElement('li');
-$ulTwo.appendChild($listTwo);
-$listTwo.textContent = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis officia dolorem vero explicabo assumenda a eaque mollitia laborum voluptatibus sapiente, nihil, nisi minus quidem sit ducimus quis modi ipsa ullam!';
+document.addEventListener('DOMContentLoaded', renderEntry(data.entries));
