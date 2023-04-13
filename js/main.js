@@ -33,6 +33,7 @@ $form.addEventListener('submit', function saveEntry(event) {
 // append user input to DOM tree
 function renderEntry(entry) {
   const $list = document.createElement('li');
+  $list.setAttribute('data-entry-id', entry.entryId);
 
   const $row = document.createElement('div');
   $row.setAttribute('class', 'row');
@@ -53,6 +54,10 @@ function renderEntry(entry) {
   const $title = document.createElement('h3');
   $colTwoHalf.appendChild($title);
   $title.textContent = entry.title;
+
+  // const $editIcon = document.createElement('i');
+  // $colTwoHalf.appendChild($editIcon);
+  // $editIcon.setAttribute('className', 'fa-solid fa-pen');
 
   const $notes = document.createElement('p');
   $notes.textContent = entry.notes;
