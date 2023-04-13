@@ -8,8 +8,35 @@ header {
   color: white;
 }
 
+.nav {
+  display: flex;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  margin-left: 2rem;
+  font-size: 1.25rem;
+}
+
 .header-row {
   padding: 0.5rem 0;
+}
+
+.page-name-wrap {
+  display: flex;
+  margin-top: 1.5rem;
+  justify-content: space-between;
+}
+
+.new-button {
+  border: solid;
+  border-color: #552b80;
+  background-color: #552b80;
+  color: white;
+  border-radius: 9%;
+  font-size: 1rem;
+  padding: 5px;
 }
 
 h2 {
@@ -22,6 +49,7 @@ h2 {
 
 img {
   width: 100%;
+  border-radius: 2%;
 }
 
 input {
@@ -66,20 +94,27 @@ button {
   margin-top: 1rem;
 }
 
+li {
+  margin-bottom: 3rem;
+}
+
 ul {
   list-style-type: none;
-  font-size: 2rem;
   padding: 0;
 }
 
-li {
-  font-size: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+h3 {
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-.entry {
-  margin-top: 2.5rem;
+p {
+  font-size: 1rem;
+}
+
+.center {
+  text-align: center;
 }
 
 @media screen and (min-width: 768px) {
@@ -87,7 +122,11 @@ li {
     margin-left: 2.5rem;
   }
 
-  ul {
-    padding-left: 2.5rem;
+  h3 {
+    margin-left: 2.5rem;
+  }
+
+  p {
+    margin-left: 2.5rem;
   }
 }

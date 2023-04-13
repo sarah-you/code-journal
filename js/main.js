@@ -1,6 +1,11 @@
 // listen for photo preview
 const $inputUrl = document.getElementById('photo-url');
 const $imgSrc = document.querySelector('img');
+const $ul = document.querySelector('ul');
+const $nav = document.querySelector('a');
+const $entryForm = document.getElementById('entry-form');
+const $entries = document.getElementById('entries');
+const $newButton = document.querySelector('.new-button');
 
 $inputUrl.addEventListener('input', previewPhoto);
 
@@ -9,10 +14,10 @@ function previewPhoto(event) {
   $imgSrc.setAttribute('src', $inputUrl);
 }
 
-// listen for user form input and submission
+// listen for user form input and form submission
 const $form = document.querySelector('form');
 
-function saveEntry(event) {
+$form.addEventListener('submit', function saveEntry(event) {
   event.preventDefault();
   const userInput = {};
   userInput.title = event.target.elements.title.value;
@@ -23,32 +28,78 @@ function saveEntry(event) {
   data.entries.unshift(userInput);
   $imgSrc.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
-  // renderEntry(userInput);
-}
+  $ul.prepend(renderEntry(userInput)); // allows forms to be added without having to refresh webpage
+});
 
-$form.addEventListener('submit', saveEntry);
-
+// append user input to DOM tree
 function renderEntry(entry) {
-  // li element and its text content
-  const $title = document.createElement('li');
-  $title.textContent = entry.title;
-  $title.setAttribute('class', 'column-half');
+  const $list = document.createElement('li');
+
+  const $row = document.createElement('div');
+  $row.setAttribute('class', 'row');
+  $list.appendChild($row);
+
+  const $colOneHalf = document.createElement('div');
+  $colOneHalf.setAttribute('class', 'column-half');
+  $row.appendChild($colOneHalf);
 
   const $img = document.createElement('img');
-  $title.appendChild($img);
   $img.setAttribute('src', entry.imgUrl);
+  $colOneHalf.appendChild($img);
+
+  const $colTwoHalf = document.createElement('div');
+  $colTwoHalf.setAttribute('class', 'column-half');
+  $row.appendChild($colTwoHalf);
+
+  const $title = document.createElement('h3');
+  $colTwoHalf.appendChild($title);
+  $title.textContent = entry.title;
 
   const $notes = document.createElement('p');
   $notes.textContent = entry.notes;
-  $title.appendChild($notes);
+  $colTwoHalf.appendChild($notes);
 
-  return $title;
+  return $list;
 }
-
-const $ul = document.querySelector('ul');
-
+// adds the user input to DOM tree below <ul> when page refreshes
 document.addEventListener('DOMContentLoaded', function () {
   for (let i = 0; i < data.entries.length; i++) {
     $ul.appendChild(renderEntry(data.entries[i]));
   }
+  viewSwap(data.view); // loads the same page after refreshing
+  toggleNoEntries();
+});
+
+// switch to show or hide no entry text
+const $noEntries = document.querySelector('.center');
+function toggleNoEntries() {
+  if (data.entries.length > 0) {
+    $noEntries.setAttribute('class', 'hidden center');
+  } else {
+    $noEntries.setAttribute('class', 'center');
+  }
+}
+toggleNoEntries();
+
+// viewswapping between entries and entry-form pages
+function viewSwap(viewName) {
+  if (viewName === 'entry-form') {
+    $entries.setAttribute('class', 'hidden');
+    $entryForm.setAttribute('class', 'display');
+    data.view = viewName;
+    toggleNoEntries();
+  } else {
+    $entries.setAttribute('class', 'display');
+    $entryForm.setAttribute('class', 'hidden');
+    data.view = viewName;
+    toggleNoEntries();
+  }
+}
+
+$nav.addEventListener('click', function () {
+  viewSwap('entries');
+});
+
+$newButton.addEventListener('click', function () {
+  viewSwap('entry-form');
 });
