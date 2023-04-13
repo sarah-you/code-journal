@@ -7,12 +7,10 @@ const $entryForm = document.getElementById('entry-form');
 const $entries = document.getElementById('entries');
 const $newButton = document.querySelector('.new-button');
 
-$inputUrl.addEventListener('input', previewPhoto);
-
-function previewPhoto(event) {
+$inputUrl.addEventListener('input', function previewPhoto(event) {
   const $inputUrl = event.target.value;
   $imgSrc.setAttribute('src', $inputUrl);
-}
+});
 
 // listen for user form input and form submission
 const $form = document.querySelector('form');
@@ -29,6 +27,7 @@ $form.addEventListener('submit', function saveEntry(event) {
   $imgSrc.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
   $ul.prepend(renderEntry(userInput)); // allows forms to be added without having to refresh webpage
+  viewSwap('entries');
 });
 
 // append user input to DOM tree
@@ -79,7 +78,6 @@ function toggleNoEntries() {
     $noEntries.setAttribute('class', 'center');
   }
 }
-toggleNoEntries();
 
 // viewswapping between entries and entry-form pages
 function viewSwap(viewName) {
