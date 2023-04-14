@@ -143,12 +143,12 @@ $newButton.addEventListener('click', function () {
 
 // switch to Edit Entries page when pen icon is clicked
 $ul.addEventListener('click', function (event) {
-  viewSwap('entry-form');
   const $li = event.target.closest('li'); // grabs the closest <li> element from the event (pen icon);
   for (let i = 0; i < data.entries.length; i++) {
     if (data.entries[i].entryId === Number($li.getAttribute('data-entry-id'))) {
       data.editing = data.entries[i];
     }
+    viewSwap('entry-form');
   }
   // (above) loops through data entries (each form) in data.js to find the entryId that matches the one from the current selected <li> and adds it to data object's editing property
 
