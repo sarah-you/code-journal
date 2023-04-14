@@ -64,10 +64,6 @@ input {
   margin-bottom: 3%;
 }
 
-/* .fa-pen {
-  color: #552b80;
-} */
-
 .notes {
   padding: 1% 0%;
 }
@@ -80,7 +76,7 @@ textarea {
   border-color: #ccc;
 }
 
-button {
+#save-button {
   background-color: #552b80;
   border: none;
   color: white;
@@ -98,19 +94,37 @@ button {
   margin-top: 1rem;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 li {
   margin-bottom: 3rem;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.main-row {
+  margin-top: 1rem;
+}
+
+.edit {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
 }
 
 h3 {
   font-size: 2rem;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.fa-pen {
+  color: #552b80;
+}
+
+.fa-pen:hover {
+  cursor: pointer;
 }
 
 p {
@@ -124,6 +138,14 @@ p {
 @media screen and (min-width: 768px) {
   .form {
     margin-left: 2.5rem;
+  }
+
+  .page-name-wrap {
+    margin-bottom: 1.5rem;
+  }
+
+  .edit {
+    margin-top: 0;
   }
 
   h3 {
