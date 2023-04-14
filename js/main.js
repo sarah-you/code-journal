@@ -18,6 +18,7 @@ const $form = document.querySelector('form');
 
 $form.addEventListener('submit', function saveEntry(event) {
   event.preventDefault();
+  // if there's no entry form being edited, perform standard functionally for new entry
   if (data.editing === null) {
     const userInput = {};
     userInput.title = event.target.elements.title.value;
@@ -30,17 +31,20 @@ $form.addEventListener('submit', function saveEntry(event) {
     $form.reset();
     $ul.prepend(renderEntry(userInput)); // allows forms to be added without having to refresh webpage
     viewSwap('entries');
+    // if there's entry form that's being edited, add the updated input into the current form being edited
   } else {
     const editInput = {};
     editInput.entryId = data.editing.entryId;
     editInput.title = event.target.elements.title.value;
     editInput.imgUrl = event.target.elements.photo.value;
     editInput.notes = event.target.elements.notes.value;
+    // loop through the data entries array (data.js) and find the entryId that matches the current edited form's entryId and add the updated input values to it
     for (let i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === editInput.entryId) {
         data.entries[i] = editInput;
       }
     }
+    // add the edited form to the DOM tree using renderEntry function and find the list element (the entry form) that needs to be replaced with the updated version and replace it
     const $updatedForm = renderEntry(editInput);
     const $liElements = document.querySelectorAll('li');
     for (let i = 0; i < $liElements.length; i++) {
@@ -49,6 +53,7 @@ $form.addEventListener('submit', function saveEntry(event) {
       }
     }
   }
+  // reset the form and switch to entries view to show the updated forms after the edits with the rest of the entries
   $form.reset();
   viewSwap('entries');
 });
