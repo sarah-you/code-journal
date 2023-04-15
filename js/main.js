@@ -148,21 +148,66 @@ $ul.addEventListener('click', function (event) {
     if (data.entries[i].entryId === Number($li.getAttribute('data-entry-id'))) {
       data.editing = data.entries[i];
     }
-    viewSwap('entry-form');
+    // (above) loops through data entries (each form) in data.js to find the entryId that matches the one from the current selected <li> and adds it to data object's editing property
+    const $editTitle = document.querySelector('#title');
+    $editTitle.value = data.editing.title;
+    const $editImg = document.querySelector('#photo-url');
+    $editImg.value = data.editing.imgUrl;
+    const $editImgSrc = document.querySelector('img');
+    $editImgSrc.src = data.editing.imgUrl;
+    const $editNotes = document.querySelector('#notes');
+    $editNotes.value = data.editing.notes;
+    // (above) grabs the title, image url input, image src, and notes input value from the user's past (selected) entry using main.js data object's editing
+
+    // changes the New Entry page heading to Edit Entries
+    const $pageName = document.querySelector('h1');
+    $pageName.textContent = 'Edit Entries';
   }
-  // (above) loops through data entries (each form) in data.js to find the entryId that matches the one from the current selected <li> and adds it to data object's editing property
+  viewSwap('entry-form');
+  const $delButton = document.querySelector('#del-button');
+  $delButton.setAttribute('class', 'display');
 
-  const $editTitle = document.querySelector('#title');
-  $editTitle.value = data.editing.title;
-  const $editImg = document.querySelector('#photo-url');
-  $editImg.value = data.editing.imgUrl;
-  const $editImgSrc = document.querySelector('img');
-  $editImgSrc.src = data.editing.imgUrl;
-  const $editNotes = document.querySelector('#notes');
-  $editNotes.value = data.editing.notes;
-  // (above) grabs the title, image url input, image src, and notes input value from the user's past (selected) entry using main.js data object's editing
+  // modal pop up when user clicks delete entry
+  $delButton.addEventListener('click', function () {
+    const $hiddenModal = document.createElement('div');
+    $hiddenModal.setAttribute('class', 'hidden modal');
+    $delButton.appendChild($hiddenModal);
+    const $modalWrap = document.createElement('div');
+    $modalWrap.setAttribute('class', 'modal-wrap');
+    $hiddenModal.appendChild($modalWrap);
+    const $modalText = document.createElement('h4');
+    $modalWrap.appendChild($modalText);
+    $modalText.textContent = 'Are you sure you want to delete this entry?';
+    const $modalBtnWrap = document.createElement('div');
+    $modalBtnWrap.setAttribute('class', 'modal-btn-wrap');
+    $modalWrap.appendChild($modalBtnWrap);
+    const $modalCancelBtn = document.createElement('button');
+    $modalCancelBtn.setAttribute('class', 'cancel btn');
+    $modalCancelBtn.textContent = 'CANCEL';
+    $modalBtnWrap.appendChild($modalCancelBtn);
+    const $modalConfirmBtn = document.createElement('button');
+    $modalConfirmBtn.setAttribute('class', 'confirm btn');
+    $modalConfirmBtn.textContent = 'CONFIRM';
+    $modalBtnWrap.appendChild($modalConfirmBtn);
 
-  // changes the New Entry page heading to Edit Entries
-  const $pageName = document.querySelector('h1');
-  $pageName.textContent = 'Edit Entries';
+    $hiddenModal.setAttribute('class', 'visible modal');
+
+    $modalCancelBtn.addEventListener('click', function () {
+      $hiddenModal.setAttribute('class', 'hidden');
+    });
+
+    $modalConfirmBtn.addEventListener('click', function () {
+      const $li = event.target.closest('li');
+      for (let i = 0; i < data.entries.length; i++) {
+        if (data.entries[i].entryId === Number($li.getAttribute('data-entry-id'))) {
+          data.entries.splice(0, 1);
+          data.editing.splice(0, 1);
+        }
+      }
+      $li.remove();
+      toggleNoEntries();
+      $hiddenModal.setAttribute('class', 'hidden');
+      viewSwap('entries');
+    });
+  });
 });

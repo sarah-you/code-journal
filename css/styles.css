@@ -76,6 +76,79 @@ textarea {
   border-color: #ccc;
 }
 
+.j-c {
+  justify-content: space-between;
+}
+
+#del-button {
+  border: none;
+  text-decoration: underline;
+  color: red;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.visible {
+  background-color: black;
+  opacity: 0.8;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-wrap {
+  background-color: white;
+  width: 20%;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+h4 {
+  color: black;
+  font-size: 1rem;
+}
+
+.modal-btn-wrap {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn {
+  width: 6rem;
+  height: 2rem;
+  border: none;
+  border-radius: 5px;
+  margin-top: 2rem;
+}
+
+.cancel {
+  background-color: #b6b6b6;
+  color: black;
+  margin-right: 2rem;
+}
+
+.confirm {
+  background-color: #dc2626;
+  color: white;
+  margin-left: 2rem;
+}
+
 #save-button {
   background-color: #552b80;
   border: none;
@@ -84,10 +157,7 @@ textarea {
   margin-top: 2%;
   margin-bottom: 1rem;
   padding: 8px 15px;
-}
-
-.flex-end {
-  justify-content: flex-end;
+  cursor: pointer;
 }
 
 .margin-top {
