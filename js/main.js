@@ -32,7 +32,8 @@ $form.addEventListener('submit', function saveEntry(event) {
     $imgSrc.setAttribute('src', 'images/placeholder-image-square.jpg');
     $form.reset();
     $ul.prepend(renderEntry(data.entries[0])); // allows forms to be added without having to refresh webpage
-    // if there's entry form that's being edited, add the updated input into the current form being edited
+    // (below) if there's entry form that's being edited, add the updated input into the current form being edited
+    // (below) add the edited form to the DOM tree using renderEntry function and find the list element (the entry form) that needs to be replaced with the updated version and replace it
   } else {
     const $liElements = document.querySelectorAll('li');
     const editInput = {};
@@ -49,9 +50,6 @@ $form.addEventListener('submit', function saveEntry(event) {
       }
     }
   }
-
-  // add the edited form to the DOM tree using renderEntry function and find the list element (the entry form) that needs to be replaced with the updated version and replace it
-
   // reset the form and switch to entries view to show the updated forms after the edits with the rest of the entries
   $form.reset();
   data.editing = null;
@@ -63,7 +61,6 @@ $form.addEventListener('submit', function saveEntry(event) {
 // append user input to DOM tree -- updates the webpage with these elements without affecting HTML directly
 function renderEntry(entry) {
   const $list = document.createElement('li');
-  // $list.setAttribute('data-entry-id', entry.entryId);
 
   const $row = document.createElement('div');
   $row.setAttribute('class', 'row');
@@ -102,6 +99,7 @@ function renderEntry(entry) {
   return $list;
 }
 
+// edits the entry form when the pencil icon is clicked and opens to Edit Entries form and updates form from data.editing inputs
 function editPencil(event) {
   for (let i = 0; i < data.entries.length; i++) {
     if (data.entries[i].entryId === Number(event.target.dataset.entryId)) {
@@ -119,10 +117,6 @@ function editPencil(event) {
       data.view = 'entry-form';
       viewSwap('entry-form');
     }
-    // (above) loops through data entries (each form) in data.js to find the entryId that matches the one from the current selected <li> and adds it to data object's editing property
-    // (above) grabs the title, image url input, image src, and notes input value from the user's past (selected) entry using main.js data object's editing
-
-    // changes the New Entry page heading to Edit Entries
 
   }
 }
@@ -173,16 +167,19 @@ $newButton.addEventListener('click', function () {
   viewSwap('entry-form');
 });
 
-const $modal = document.querySelector('.modal');
 // modal pop up when user clicks delete entry
+const $modal = document.querySelector('.modal');
+
 $delButton.addEventListener('click', function (event) {
   $modal.classList.remove('hidden');
 });
-
+// modal cancel delete button and exits modal
 const $modalCancelBtn = document.querySelector('.cancel');
 $modalCancelBtn.addEventListener('click', function () {
   $modal.classList.add('hidden');
 });
+
+// modal confirm delete button and deletes that form entryId from data storage
 const $modalConfirmBtn = document.querySelector('.confirm');
 
 $modalConfirmBtn.addEventListener('click', function () {
