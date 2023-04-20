@@ -6,6 +6,7 @@ const $nav = document.querySelector('a');
 const $entryForm = document.getElementById('entry-form');
 const $entries = document.getElementById('entries');
 const $newButton = document.querySelector('.new-button');
+const $pageName = document.querySelector('h1');
 
 // listen for photo preview -- once user inputs image address, photo preview shows
 $inputUrl.addEventListener('input', function previewPhoto(event) {
@@ -54,6 +55,7 @@ $form.addEventListener('submit', function saveEntry(event) {
     }
   }
   // reset the form and switch to entries view to show the updated forms after the edits with the rest of the entries
+  data.editing = null;
   $form.reset();
   viewSwap('entries');
 });
@@ -130,7 +132,6 @@ function viewSwap(viewName) {
     toggleNoEntries();
   }
 }
-
 // shows Entries page when the Entries tab is clicked
 $nav.addEventListener('click', function () {
   viewSwap('entries');
@@ -139,6 +140,8 @@ $nav.addEventListener('click', function () {
 // shows the Entry Form page when NEW button is clicked
 $newButton.addEventListener('click', function () {
   viewSwap('entry-form');
+  $pageName.textContent = 'New Entry';
+  $imgSrc.setAttribute('src', 'images/placeholder-image-square.jpg');
 });
 
 // switch to Edit Entries page when pen icon is clicked
@@ -163,6 +166,5 @@ $ul.addEventListener('click', function (event) {
   // (above) grabs the title, image url input, image src, and notes input value from the user's past (selected) entry using main.js data object's editing
 
   // changes the New Entry page heading to Edit Entries
-  const $pageName = document.querySelector('h1');
   $pageName.textContent = 'Edit Entries';
 });
