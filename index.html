@@ -5,12 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Code Journal</title>
   <link rel="icon" href="images/favicon.ico">
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer" />
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
@@ -22,6 +19,9 @@
   <header>
     <div class="container">
       <div class="row header-row">
+        <div class="nav column-full">
+          <h2>Code Journal</h2>
+          <a href="#">Entries</a>
         <div class="nav column-full"><h2>Code Journal</h2>
           <a href="#entries">Entries</a>
         </div>
@@ -38,6 +38,7 @@
         </div>
       </div>
     </div>
+    <div data-view="entry-form" id="entry-form">
     <div data-view="entry-form" id="entry-form" class="hidden">
       <form>
         <div class="row">
@@ -45,7 +46,8 @@
         </div>
         <div class="row main-row">
           <div class="column-half">
-            <img src="images/placeholder-image-square.jpg" alt="placeholder image icon in gray color with a small rectangle frame in the middle and has an incon of sun and mountain inside">
+            <img src="images/placeholder-image-square.jpg"
+              alt="placeholder image icon in gray color with a small rectangle frame in the middle and has an incon of sun and mountain inside">
           </div>
           <div class="column-half margin-top">
             <div class="form">
@@ -71,6 +73,7 @@
           </div>
         </div>
         <div class="row j-c">
+          <button id="del-button" type="button" class="">Delete Entry</button>
           <button id="del-button" type="button" class="hidden">Delete Entry</button>
           <button id="save-button" type="submit">SAVE</button>
         </div>

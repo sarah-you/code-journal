@@ -8,6 +8,7 @@ const $entries = document.getElementById('entries');
 const $newButton = document.querySelector('.new-button');
 const $pageName = document.querySelector('h1');
 const $delButton = document.querySelector('#del-button');
+const $form = document.querySelector('form');
 
 // listen for photo preview -- once user inputs image address, photo preview shows
 $inputUrl.addEventListener('input', function previewPhoto(event) {
@@ -16,7 +17,6 @@ $inputUrl.addEventListener('input', function previewPhoto(event) {
 });
 
 // listen for user form input and form submission -- adds user's form input to data object (data.js) and submits form to be added to entries tab
-const $form = document.querySelector('form');
 
 $form.addEventListener('submit', function saveEntry(event) {
   event.preventDefault();
@@ -51,6 +51,7 @@ $form.addEventListener('submit', function saveEntry(event) {
     }
   }
   // reset the form and switch to entries view to show the updated forms after the edits with the rest of the entries
+  data.editing = null;
   $form.reset();
   data.editing = null;
   toggleNoEntries();
@@ -151,7 +152,6 @@ function viewSwap(viewName) {
     data.view = viewName;
   }
 }
-
 // shows Entries page when the Entries tab is clicked
 $nav.addEventListener('click', function () {
   data.view = 'entries';
@@ -165,6 +165,9 @@ $newButton.addEventListener('click', function () {
   $pageName.textContent = 'New Entries';
   data.view = 'entry-form';
   viewSwap('entry-form');
+  $pageName.textContent = 'New Entry';
+  $imgSrc.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $form.reset();
 });
 
 // modal pop up when user clicks delete entry
@@ -194,5 +197,50 @@ $modalConfirmBtn.addEventListener('click', function () {
       viewSwap('entries');
       toggleNoEntries();
     }
+    viewSwap('entry-form');
+  }
+  // (above) loops through data entries (each form) in data.js to find the entryId that matches the one from the current selected <li> and adds it to data object's editing property
+
+  const $editTitle = document.querySelector('#title');
+  $editTitle.value = data.editing.title;
+  const $editImg = document.querySelector('#photo-url');
+  $editImg.value = data.editing.imgUrl;
+  const $editImgSrc = document.querySelector('img');
+  $editImgSrc.src = data.editing.imgUrl;
+  const $editNotes = document.querySelector('#notes');
+  $editNotes.value = data.editing.notes;
+  // (above) grabs the title, image url input, image src, and notes input value from the user's past (selected) entry using main.js data object's editing
+
+  // changes the New Entry page heading to Edit Entries
+  $pageName.textContent = 'Edit Entries';
+});
+
+// modal pop up when user clicks delete entry
+const $modal = document.querySelector('.modal');
+
+$delButton.addEventListener('click', function (event) {
+  $modal.classList.remove('hidden');
+});
+// modal cancel delete button and exits modal
+const $modalCancelBtn = document.querySelector('.cancel');
+$modalCancelBtn.addEventListener('click', function () {
+  $modal.classList.add('hidden');
+});
+
+// modal confirm delete button and deletes that form entryId from data storage
+const $modalConfirmBtn = document.querySelector('.confirm');
+
+$modalConfirmBtn.addEventListener('click', function () {
+  $modal.classList.add('hidden');
+  const $li = document.querySelectorAll('li');
+  for (let i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === Number(data.editing.entryId)) {
+      data.entries.splice([i], 1);
+      $ul.removeChild($li[i]);
+      data.editing = null;
+      viewSwap('entries');
+      toggleNoEntries();
+    }
+  }
   }
 });
