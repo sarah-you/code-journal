@@ -8,6 +8,7 @@ const $entries = document.getElementById('entries');
 const $newButton = document.querySelector('.new-button');
 const $pageName = document.querySelector('h1');
 const $delButton = document.querySelector('#del-button');
+const $form = document.querySelector('form');
 
 // listen for photo preview -- once user inputs image address, photo preview shows
 $inputUrl.addEventListener('input', function previewPhoto(event) {
@@ -16,7 +17,6 @@ $inputUrl.addEventListener('input', function previewPhoto(event) {
 });
 
 // listen for user form input and form submission -- adds user's form input to data object (data.js) and submits form to be added to entries tab
-const $form = document.querySelector('form');
 
 $form.addEventListener('submit', function saveEntry(event) {
   event.preventDefault();
@@ -143,6 +143,7 @@ $newButton.addEventListener('click', function () {
   viewSwap('entry-form');
   $pageName.textContent = 'New Entry';
   $imgSrc.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $form.reset();
 });
 
 // switch to Edit Entries page when pen icon is clicked
