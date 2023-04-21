@@ -22,6 +22,8 @@
         <div class="nav column-full">
           <h2>Code Journal</h2>
           <a href="#">Entries</a>
+        <div class="nav column-full"><h2>Code Journal</h2>
+          <a href="#entries">Entries</a>
         </div>
       </div>
     </div>
@@ -37,6 +39,7 @@
       </div>
     </div>
     <div data-view="entry-form" id="entry-form">
+    <div data-view="entry-form" id="entry-form" class="hidden">
       <form>
         <div class="row">
           <h1>New Entry</h1>
@@ -71,16 +74,17 @@
         </div>
         <div class="row j-c">
           <button id="del-button" type="button" class="">Delete Entry</button>
+          <button id="del-button" type="button" class="hidden">Delete Entry</button>
           <button id="save-button" type="submit">SAVE</button>
         </div>
       </form>
     </div>
-    <div data-view="entries" id="entries" class="hidden">
+    <div data-view="entries" id="entries" class="">
       <div class="page-name-wrap">
         <h2 class="page-name">Entries</h2>
-        <a href="#" class="new-button">NEW</a>
+        <a href="#new-entry" class="new-button">NEW</a>
       </div>
-      <p class="center">No entries have been recorded.</p>
+      <p class="" id="center">No entries have been recorded.</p>
       <ul></ul>
     </div>
   </main>
