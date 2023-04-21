@@ -1,7 +1,7 @@
 /* exported data */
 // local storage for entry submissions
 var data = {
-  view: 'entries',
+  view: 'entry-form',
   entries: [],
   editing: null,
   nextEntryId: 1

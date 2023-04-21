@@ -194,7 +194,6 @@ $modalConfirmBtn.addEventListener('click', function () {
       data.entries.splice([i], 1);
       $ul.removeChild($li[i]);
       data.editing = null;
-      data.view = 'entries';
       viewSwap('entries');
       toggleNoEntries();
     }
